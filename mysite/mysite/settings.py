@@ -84,7 +84,7 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE' : 'django.db.backends.mysql',
         'NAME' : 'db_sorrow',
-        'HOST' : 'localhost',
+        'HOST' : '172.31.128.1',
         'PORT' : '3306',
         'USER' : 'root',
         'PASSWORD' : 'zy0720',

@@ -1,10 +1,11 @@
 import HelloWorldVue from '@/components/HelloWorld.vue'
 import HomeitemVue from '@/components/Homeitem.vue'
 import HomeKnowitem from '@/components/HomeKnowitem.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
+  // history: createWebHashHistory(import.meta.env.BASE_URL),
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {

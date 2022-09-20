@@ -1,33 +1,35 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { onMounted, ref } from 'vue'
-import store from './store';
 const activeIndex = ref('1')
 const activeIndex2 = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
-  console.log(store.state.loginingUser)
 }
-const setemtpyuser = ()=>{
-    let emptyuser = {
+const setemtpyuser = () => {
+  let emptyuser = {
     user: "",
     token: "",
-    date: null,}
-    localStorage.setItem("LoginingUser",JSON.stringify(emptyuser))
+    date: null,
+  }
+  localStorage.setItem("LoginingUser", JSON.stringify(emptyuser))
 }
 let lname = ""
-let lu :any  =  localStorage.getItem("LoginingUser")  
-lu = JSON.parse(lu)
-console.log(lu)
-if (lu.user != ""){
-  if (Date.now() - lu.date > 43200000){
-    setemtpyuser();
-  }else{
-    lname = lu.user
+let lu: any = localStorage.getItem("LoginingUser")
+if (lu != null) {
+  lu = JSON.parse(lu)
+  if (lu.user != "") {
+    if (Date.now() - lu.date > 43200000) {
+      setemtpyuser();
+    } else {
+      lname = lu.user
+    }
+  } else {
+    lname = ""
   }
 }
 
-console.log(lname)
+
 const onSubmit = () => {
   localStorage.setItem("loginingUser", "")
   localStorage.setItem("loginToken", "")
@@ -43,7 +45,7 @@ const onSubmit = () => {
         text-color="#fff" active-text-color="#ffd04b" @select="handleSelect">
         <el-menu-item index="1" route="/">GALI Center</el-menu-item>
         <el-sub-menu index="2" v-show="lname">
-          <template #title >Blogspace</template>
+          <template #title>Blogspace</template>
           <el-menu-item index="2-1" route="/bloglist">blog list</el-menu-item>
           <el-menu-item index="2-2" route="/blogadd">add blog</el-menu-item>
           <el-menu-item index="2-3" disabled>item three</el-menu-item>
@@ -57,8 +59,9 @@ const onSubmit = () => {
         <el-menu-item index="3" route="/about">about</el-menu-item>
         <el-menu-item index="4" route="/lx">Orders</el-menu-item>
         <div v-if="lname" style="right: 1%; position: absolute; width: 200px; height: 59px;">
-          <el-avatar style="right: 40%;top: 20%; position: absolute;" src="https://avatars.githubusercontent.com/u/57176280?s=400&u=e8e4df48c4593bd6fc77a8f49f2dde786d736a80&v=4"  />
-          <el-dropdown  style="left: 90%; top: 40%; position: absolute;" >
+          <el-avatar style="right: 40%;top: 20%; position: absolute;"
+            src="https://avatars.githubusercontent.com/u/57176280?s=400&u=e8e4df48c4593bd6fc77a8f49f2dde786d736a80&v=4" />
+          <el-dropdown style="left: 90%; top: 40%; position: absolute;">
 
             <el-link :underline="false" type="primary">{{lname}}</el-link>
             <template #dropdown>

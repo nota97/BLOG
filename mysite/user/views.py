@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from email import message
 from http.client import HTTP_PORT
 from rest_framework import status
@@ -20,7 +19,7 @@ class MyAuthentication(BaseAuthentication):
         q_method = request.META['REQUEST_METHOD'] 
         # GET请求不认证
         if q_method == 'GET':
-            return NULL,NULL
+            return None,None
         if not token:
             raise AuthenticationError({"code" :1000, "error": "认证失败"})
         user_object = user.objects.filter(token = token).first()
